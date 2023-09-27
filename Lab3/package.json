@@ -1,0 +1,16 @@
+{
+  "name": "ece-webtech-504",
+  "version": "1.0.0",
+  "description": "- Abdallah Kadir Abdallah <abdallahkadir222@gmail.com> - Ryan Bagot <bagot.ryan26@gmail.com> - Hamed Bamba <medyybamba@gmail.com>",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
