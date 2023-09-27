@@ -41,3 +41,98 @@ function (req, res){
         
 }
 })
+const db = {
+  articles: [
+    {
+      id: '6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b',
+      title: 'My article',
+      content: 'Content of the article.',
+      date: '04/10/2022',
+      author: 'Liz Gringer'
+    },
+    {
+      id: '344',
+      title: 'My article',
+      content: 'Content of the article.',
+      date: '04/10/2022',
+      author: 'Liz Gringer'
+    },
+    // ...
+  ],
+  comments: [
+    {
+      id: '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d',
+      timestamp: 1664835049,
+      content: 'Content of the comment.',
+      articleId: '6ec0bd7f-11c0-43da-975e-2a8ad9ebae0b',
+      author: 'Bob McLaren'
+    },
+    {
+      id: '89',
+      timestamp: 1664835049,
+      content: 'Content of the comment.',
+      articleId: '344',
+      author: 'Bob McLaren'
+    },
+    // ...
+  ]
+}; 
+
+app.use(express.json())
+
+
+// afficher tous les articles
+app.get(
+    '/articles', (req, res) => {
+    res.status(200).json(db.articles); 
+}); 
+    
+ // ajouter un article    
+app.post('/articles', (req, res) => {
+    db.articles.push(req.body); 
+    res.status(200).json(db.articles); 
+}); 
+// afficher un article via id
+app.get('/articles/:id', (req, res) =>{
+    const articleId= req.params.id 
+    const article = db.articles.find(article => article.id === articleId); 
+    if (!article){
+    return res.status(404).json({error: 'Article not found'})
+    }
+    res.json(article); 
+}); 
+
+app.get(
+  '/articles/:articleId/comments',
+  function (req, res) {
+    const searchId = req.params.articleId
+    const comments = db.comments.filter( comment => comment.articleId === searchId)
+    res.status(200).json(comments)
+  }
+)
+app.use(express.json())
+
+app.post(
+  '/articles/:articleId/comments',
+  function (req, res) {
+    const searchId = req.params.articleId
+    const n_comment=req.body
+    n_comment.articleId=searchId
+    db.comments.push(req.body)
+
+    const comments = db.comments.filter( comment => comment.articleId === searchId)
+    res.status(200).json.stringify(comments)
+  }
+)
+
+app.get(
+  '/articles/:articleId/comments/:commentId',
+  function (req, res) {
+    const s_ArticleId = req.params.articleId
+    const s_CommentId = req.params.commentId
+
+    const comments = db.comments.filter( comment => comment.articleId === s_ArticleId)
+    const comment = comments.find(comment => comment.id === s_CommentId)
+    res.status(200).json(comment)
+  }
+)
