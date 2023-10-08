@@ -9,9 +9,9 @@
 ## Running/Usage Instructions
 
 /hello takes a name query parameter and:
- 	- random names reply hello [name]
-    - your own name replies with a short intro of yourself
-    'http://localhost:8080/hello?name=name'
+- random names reply hello [name]
+- your own name replies with a short intro of yourself
+    <http://localhost:8080/hello?name=name>
 
 ## Contributors
 
