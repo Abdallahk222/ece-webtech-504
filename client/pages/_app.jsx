@@ -1,9 +1,11 @@
 import Link from 'next/link'
+import '../styles/globals.css'
 
 export default function App({ Component, pageProps }) {
     return (<>
     <header>
-      <h1>Lab 4</h1>
+      <h1 className="font-bold text-red-600">Lab 4</h1>
+      <br></br>
     </header>
     <nav>
       <ul>
@@ -21,6 +23,7 @@ export default function App({ Component, pageProps }) {
         </li>
       </ul>
     </nav>
+    <br></br>
     <Component {...pageProps} />
     <p></p>
     <footer>

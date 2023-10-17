@@ -25,7 +25,8 @@ export default function Articles() {
         );
     return (
         <div>
-            <h2>Articles</h2>
+            <p className='italic font-bold text-sky-500 dark:text-sky-400'>YOUR FUTURE ARTICLES</p>
+            <br></br>
             <table>
                 <thead>
                     <tr>
