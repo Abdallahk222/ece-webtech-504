@@ -1,19 +1,23 @@
-const dbarticles = [{
-    id: '332',
-    title: 'My article',
-    content: 'Content of the article.',
-    date: '04/10/2022',
-    author: 'Liz Gringer'
-},
-{
-  id: '344',
-  title: 'My article',
-  content: 'Content of the article.',
-  date: '04/10/2022',
-  author: 'Liz Gringer'
-}]
+export async function getStaticProps() {
+    const dbarticles = [{
+        id: '332',
+        title: 'My article',
+        content: 'Content of the article.',
+        date: '04/10/2022',
+        author: 'Liz Gringer'
+    },
+    {
+      id: '344',
+      title: 'My article',
+      content: 'Content of the article.',
+      date: '04/10/2022',
+      author: 'Liz Gringer'
+    }]
 
-export default function Articles() {
+    return { props: { dbarticles, } }
+}
+
+export default function Articles({dbarticles}) {
     const tableArticle= dbarticles.map(article =>
                 <tr>
                     <td>{article.id}</td>
