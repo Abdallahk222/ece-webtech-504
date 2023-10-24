@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router'
-
 const dbarticles = [{
     id: '332',
     title: 'My article',
@@ -8,16 +7,14 @@ const dbarticles = [{
     author: 'Liz Gringer'
 },
 {
-    id: '344',
-    title: 'My article',
-    content: 'Content of the article.',
-    date: '04/10/2022',
-    author: 'Liz Gringer'
+  id: '344',
+  title: 'My article',
+  content: 'Content of the article.',
+  date: '04/10/2022',
+  author: 'Liz Gringer'
 }]
 
-export default function Page() {
-    const router = useRouter()
-    const article = dbarticles.find(article => article.id === router.query.articleId);
+export default function Page({article}) {
     if(!article){
         return <p>Article inexistant</p>
     } else {
@@ -54,4 +51,34 @@ export default function Page() {
             </div>
         );
     }
+}
+
+
+export async function getStaticPaths() {
+    const paths = dbarticles.map(article => ({
+        params: { articleId: article.id },
+    }));
+
+    return {paths, fallback: false};
+}
+
+export async function getStaticProps({ params }) {
+    const dbarticles = [{
+        id: '332',
+        title: 'My article',
+        content: 'Content of the article.',
+        date: '04/10/2022',
+        author: 'Liz Gringer'
+    },
+    {
+      id: '344',
+      title: 'My article',
+      content: 'Content of the article.',
+      date: '04/10/2022',
+      author: 'Liz Gringer'
+    }]
+
+    const article = dbarticles.find(article => article.id === params.articleId);
+
+    return {props: {article,}};
 }
