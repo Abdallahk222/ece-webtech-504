@@ -1,8 +1,8 @@
 export default function About() {
     return (
-        <div>
-            <h2>About</h2>
-            <h3>Lab4 : Frameworks</h3>
+        <div className="flex items-center justify-center h-screen">
+            <h2>Projet Webtech</h2>
+            <h3></h3>
         </div>
     );
 }

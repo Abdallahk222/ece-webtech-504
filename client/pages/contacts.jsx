@@ -12,7 +12,7 @@ export default function Contacts() {
             <form className="mt-5">
                 <div className="mb-4">
                     <label className="mr-5" htmlFor="subject"> Sujet du mail</label>
-                    <input className= "border" type="text" name="subject" id="subject" placeholder="Quel est le sujet du mail? "></input>
+                    <input className= "border" type="text" name="subject" id="subject" placeholder="Quel est le sujet du message? "></input>
                 </div>
                 <div className="mb-4">
                     <label className="mr-5" htmlFor="email"> Votre email</label>
@@ -20,7 +20,7 @@ export default function Contacts() {
                 </div>
                 <div className="mb-4">
                     <label className="mr-5" htmlFor="message"> Votre message </label>
-                    <textarea rows={5} className= "border" name="message" id="message" placeholder="Quel est votre messafe?  "></textarea>
+                    <textarea rows={5} className= "border" name="message" id="message" placeholder="Quelles sont vos suggestions ou retours ?  "></textarea>
                 </div>
                 <div className="mb-4">
                     <input type="submit" className="block bg-[#085D22] text-[white] py-2 px-2 hover:bg-[#4E6EDD] hover:text-[black]"></input>
