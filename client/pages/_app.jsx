@@ -10,27 +10,27 @@ export default function App({ Component, pageProps }) {
 
   return (
     <UserProvider>
-      <header className="flex justify-center mt-5 ">
-        <h1 class="text-gradient font-bold ">WhatFilm</h1>
+      <header className="flex justify-center mt-6">
+        <h1 className="font-bold text-4xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">WhatFilm</h1>
       </header>
-      <nav className='flex justify-center mt-5'>
-        <ul className='flex justify-between'>
-          <li className={`mr-10 ${isActive('/') ? 'font-bold text-blue-500' : ''}`}>
+      <nav className='flex justify-center mt-10'>
+        <ul className='flex justify-between space-x-10'> 
+          <li className={isActive('/') ? 'bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg' : 'bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300'}>
             <Link href="/">Home</Link>
           </li>
-          <li className={`mr-10 ${isActive('/about') ? 'font-bold text-blue-500' : ''}`}>
+          <li className={isActive('/about') ? 'bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg' : 'bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300'}>
             <Link href="/about">About Us</Link>
           </li>
-          <li className={`mr-10 ${isActive('/contacts') ? 'font-bold text-blue-500' : ''}`}>
+          <li className={isActive('/contacts') ? 'bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg' : 'bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300'}>
             <Link href="/contacts">Contact Us</Link>
           </li>
-          <li className={`mr-10 ${isActive('/articles') ? 'font-bold text-blue-500' : ''}`}>
+          <li className={isActive('/articles') ? 'bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg' : 'bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300'}>
             <Link href="/articles">Articles</Link>
           </li>
-          <li className={`mr-10 ${isActive('/use-state') ? 'font-bold text-blue-500' : ''}`}>
+          <li className={isActive('/use-state') ? 'bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg' : 'bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300'}>
             <Link href="/use-state">Use state</Link>
           </li>
-          <li className={`mr-10 ${isActive('/login-native') ? 'font-bold text-blue-500' : ''}`}>
+          <li className={isActive('/login-native') ? 'bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg' : 'bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300'}>
             <Link href="/login-native">Login</Link>
           </li>
         </ul>

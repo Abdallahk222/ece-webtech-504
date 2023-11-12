@@ -17,9 +17,11 @@ const SearchBar = ({ onSearch }) => {
         placeholder="Rechercher un film" 
         value={query} 
         onChange={(e) => setQuery(e.target.value)}
-        className= 'text-black'
+        className='p-2 rounded-l-lg text-black'
       />
-      <button type="submit" className="ml-10 block bg-[#42AFDB] text-[white] py-2 px-2 hover:bg-[#37C235]">Search</button>
+      <button 
+        type="submit" 
+        className={"bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-r-lg shadow-lg transition-all duration-300 hover:from-cyan-500 hover:to-blue-700"}>Search</button>
     </form>
   );
 };
