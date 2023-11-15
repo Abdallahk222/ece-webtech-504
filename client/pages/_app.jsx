@@ -69,12 +69,12 @@ export default function App({ Component, pageProps }) {
           </li>
           <li
             className={
-              isActive("/login-native")
+              isActive("/login")
                 ? "bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg"
                 : "bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300"
             }
           >
-            <Link href="/login-native">Login</Link>
+            <Link href="/login">Login</Link>
           </li>
           <li
             className={
