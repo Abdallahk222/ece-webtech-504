@@ -1,60 +1,68 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 .active {
-    color: #0290ff; 
-  }
-  .movies-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-gap: 20px; 
-    padding: 20px; 
-  }
-  
-  .movie {
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-  }
-  
-  .movie-poster {
-    width: 100%; 
-    height: auto; 
-    object-fit: cover; 
-    border-radius: 8px; 
-  }
-  
-  .movie-title {
-    margin-top: 8px; 
-    text-align: center;
-    font-size: 1rem; 
-  }
-  body {
-    margin: 0;
-    background-color: #28282B;
-    color: white;
-  }
+  color: #0290ff;
+}
 
-  .degrade  {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(to right, #36ecde, #000);
-  }
+.movies-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 20px;
+  padding: 20px;
+}
 
-  .button-degrade {
-    background: linear-gradient(to right, #36ecde, #000);
-    color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-  }
-  
-  .nav-button {
-    @apply py-2 px-4 rounded-lg shadow-lg text-white font-semibold transition duration-300;
-  }
-  
-  .nav-button.active {
-    @apply font-bold bg-blue-500 shadow-md;
-  }
-  
-  .nav-button.inactive:hover {
-    @apply bg-gray-300;
-  }
+.movie {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.movie-poster {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.movie-title {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+body {
+  margin: 0;
+  background-color: #fff;
+  color: black;
+}
+
+.dark body {
+  background-color: #28282B;
+  color: white;
+}
+
+.degrade {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(to right, #36ecde, #000);
+}
+
+.button-degrade {
+  background: linear-gradient(to right, #36ecde, #000);
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.nav-button {
+  @apply py-2 px-4 rounded-lg shadow-lg text-white font-semibold transition duration-300;
+}
+
+.nav-button.active {
+  @apply font-bold bg-blue-500 shadow-md;
+}
+
+.nav-button.inactive:hover {
+  @apply bg-gray-300;
+}

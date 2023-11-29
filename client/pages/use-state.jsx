@@ -6,7 +6,6 @@ function UseStatePage() {
   return (
     <div
       className="flex h-screen justify-center items-center "
-      style={{ backgroundColor: "#28282B" }}
     >
       <p className="mr-10">You clicked {count} times</p>
       <button
