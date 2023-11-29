@@ -34,70 +34,77 @@ export default function App({ Component, pageProps }) {
           WhatFilm
         </h1>
       </header>
-      <nav className="flex justify-center mt-10">
+      <nav className="flex justify-center mt-12">
         <ul className="flex justify-between space-x-10">
-          <li
+        <li>
+        <Link href="/"
             className={
               isActive("/")
                 ? "bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg"
                 : "bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300"
             }
           >
-            <Link href="/">Home</Link>
+            Home</Link>
           </li>
-          <li
+          <li>
+          <Link href="/about"
             className={
               isActive("/about")
                 ? "bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg"
                 : "bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300"
             }
           >
-            <Link href="/about">About Us</Link>
+            About Us</Link>
           </li>
-          <li
+          <li>
+          <Link href="/contacts"
             className={
               isActive("/contacts")
                 ? "bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg"
                 : "bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300"
             }
           >
-            <Link href="/contacts">Contact Us</Link>
+            Contact Us</Link>
           </li>
-          <li
+          <li>
+          <Link href="/articles"
             className={
               isActive("/articles")
                 ? "bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg"
                 : "bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300"
             }
           >
-            <Link href="/articles">Articles</Link>
+            Articles</Link>
           </li>
-          <li
+          <li>
+          <Link href="/use-state"
             className={
               isActive("/use-state")
                 ? "bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg"
                 : "bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300"
             }
           >
-            <Link href="/use-state">Use state</Link>
+            Use state</Link>
           </li>
-          <li
+          <li>
+          <Link href="/login"
             className={
               isActive("/login")
                 ? "bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg"
                 : "bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300"
             }
           >
-            <Link href="/login">Login</Link>
+            Login</Link>
           </li>
-          <li
+          <li>
+          <Link href="/admin/contacts"
             className={
               isActive("/admin/contacts")
                 ? "bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg"
                 : "bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300"
             }
           >
-            <Link href="/admin/contacts">Admin (contacts)</Link>
+            Admin (contacts)</Link>
           </li>
         </ul>
       </nav>

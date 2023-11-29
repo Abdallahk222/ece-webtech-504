@@ -30,9 +30,14 @@ export default function Profile() {
   };
 
   return (
-    <div>
-      <h1>Bienvenue {user?.email}</h1>
-      <button onClick={SignOut}>Sign Out</button>
+    <div className="flex flex-col items-center justify-center min-h-screen">
+      <h1 className="text-xl font-bold mb-5">Bienvenue {user?.email}</h1>
+      <button 
+        onClick={SignOut}
+        className="bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 ease-in-out"
+      >
+        Sign Out
+      </button>
     </div>
   );
 }

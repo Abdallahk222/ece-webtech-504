@@ -12,11 +12,9 @@ const supabase = createClient(
 const Login = () => {
   const [session, setSession] = useState(null);
   useEffect(() => {
-    // valeur initiale de session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
     });
-    // mise à jour de valeur de session
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
@@ -28,11 +26,13 @@ const Login = () => {
   const router = useRouter();
   if (!session) {
     return (
+      <div className="auth-container">
       <Auth
         supabaseClient={supabase}
         appearance={{ theme: ThemeSupa }}
         theme="dark"
       />
+    </div>
     );
   } else {
     router.push("/profile");

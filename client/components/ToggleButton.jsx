@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { ThemeContext } from './UserContext'; // ou créer un ThemeContext si nécessaire
+import { ThemeContext } from './UserContext'; 
 
 const ToggleButton = () => {
-  const { darkMode, setDarkMode } = useContext(ThemeContext); // ou votre propre hook d'état si vous n'utilisez pas de contexte
+  const { darkMode, setDarkMode } = useContext(ThemeContext); 
 
   return (
     <button
