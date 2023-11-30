@@ -27,12 +27,13 @@ const Login = () => {
   if (!session) {
     return (
       <div className="auth-container">
-      <Auth
-        supabaseClient={supabase}
-        appearance={{ theme: ThemeSupa }}
-        theme="dark"
-      />
-    </div>
+        <Auth
+          supabaseClient={supabase}
+          appearance={{ theme: ThemeSupa }}
+          theme="dark"
+          providers={["google", "github"]}
+        />
+      </div>
     );
   } else {
     router.push("/profile");
