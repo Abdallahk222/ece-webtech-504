@@ -17,6 +17,18 @@ export default function App({ Component, pageProps }) {
   const [darkMode, setDarkMode] = useState(false);
   const isActive = (path) => router.pathname === path;
   const [session, setSession] = useState(null);
+  const [userT, setUserT] = useState(null);
+  useEffect(() => {
+    async function getUserData() {
+      await supabase.auth.getUser().then((value) => {
+        if (value.data?.user) {
+          console.log(value.data.user);
+          setUserT(value.data.user);
+        }
+      });
+    }
+    getUserData();
+  }, []);
 
   useEffect(() => {
     const html = document.documentElement;
@@ -48,6 +60,13 @@ export default function App({ Component, pageProps }) {
     });
   };
 
+  const sha256 = require("js-sha256");
+  function getGravatarURL(email) {
+    const address = String(email).trim().toLowerCase();
+    const hash = sha256(address);
+    return `https://www.gravatar.com/avatar/${hash}`;
+  }
+
   return (
     <SessionContextProvider
       supabaseClient={supabaseClient}
@@ -71,7 +90,7 @@ export default function App({ Component, pageProps }) {
           <button>
             <Link
               href="/login"
-              className={`fixed top-5 right-5 ${
+              className={`fixed top-5 right-7 ${
                 isActive("/login")
                   ? "bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg"
                   : "bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300"
@@ -85,7 +104,7 @@ export default function App({ Component, pageProps }) {
             <button>
               <Link
                 href="/profile"
-                className={`fixed top-5 right-5 ${
+                className={`fixed top-5 right-7 ${
                   isActive("/profile")
                     ? "bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg"
                     : "bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300"
@@ -94,6 +113,11 @@ export default function App({ Component, pageProps }) {
                 Profile
               </Link>
             </button>
+            <img
+              src={getGravatarURL(userT?.email)}
+              alt="avatar"
+              className="fixed top-11 right-3 w-7 h-7 rounded-full"
+            />
             <button
               onClick={SignOut}
               className="fixed top-5 right-40 bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300"

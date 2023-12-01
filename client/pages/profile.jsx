@@ -27,7 +27,7 @@ export default function Profile() {
     async function getUserProfile() {
       await supabase
         .from("profiles")
-        .select("id, username, full_name, avatar_url")
+        .select("id, username, full_name")
         .then((value) => {
           if (value.data[0]) {
             console.log(value.data[0]);
@@ -40,28 +40,32 @@ export default function Profile() {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    const { username, full_name, avatar_url } = event.target.elements;
+    const { username, full_name } = event.target.elements;
     if (username.value === "") {
       username.value = user?.username;
     }
     if (full_name.value === "") {
       full_name.value = user?.full_name;
     }
-    if (avatar_url.value === "") {
-      avatar_url.value = user?.avatar_url;
-    }
     await supabase
       .from("profiles")
       .update({
         username: username.value,
         full_name: full_name.value,
-        avatar_url: avatar_url.value,
       })
       .eq("id", user?.id)
       .then(() => {
         router.push("/profile");
       });
   };
+
+  const sha256 = require("js-sha256");
+
+  function getGravatarURL(email) {
+    const address = String(email).trim().toLowerCase();
+    const hash = sha256(address);
+    return `https://www.gravatar.com/avatar/${hash}`;
+  }
 
   return (
     <div className="flex flex-col items-center justify-center">
@@ -71,11 +75,27 @@ export default function Profile() {
         Bienvenue {user?.username ? user?.username : userT?.email}
       </h1>
       <br></br>
+      <img
+        src={getGravatarURL(userT?.email)}
+        alt="avatar"
+        className="w-20 h-20 rounded-full"
+      />
+      <br></br>
+      <p>
+        Modifier votre photo de profil sur{" "}
+        <a
+          href="https://gravatar.com/connect/"
+          class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+        >
+          Gravatar
+        </a>
+        .
+      </p>
       <br></br>
       <p className="text-xl font-bold mb-5">Votre profil :</p>
       <form onSubmit={onSubmit} className="max-w-md mx-auto w-1/2">
         <div className="mb-4">
-          <label htmlFor="subject" className="block ml-20 mr-5">
+          <label htmlFor="username" className="block ml-20 mr-5">
             Votre pseudo :
           </label>
           <input
@@ -87,7 +107,7 @@ export default function Profile() {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="lastname" className="block ml-20 mr-5">
+          <label htmlFor="full_name" className="block ml-20 mr-5">
             Votre Nom :
           </label>
           <input
@@ -99,16 +119,34 @@ export default function Profile() {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="firstname" className="block ml-20 mr-5">
-            Votre avatar :
+          <label htmlFor="full_name" className="block ml-20 mr-5">
+            Votre langue :
           </label>
-          <input
-            className="border py-2 px-4 w-full rounded-md text-black"
-            type="text"
-            name="avatar_url"
-            id="avatar_url"
-            placeholder={user?.avatar_url}
-          />
+          <br></br>
+          <div className="flex items-center mb-3">
+            <input
+              id="default-radio-1"
+              type="radio"
+              value=""
+              name="default-radio"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            />
+            <label for="default-radio-1" className="block ml-5 mr-5">
+              Français
+            </label>
+          </div>
+          <div className="flex items-center">
+            <input
+              id="default-radio-2"
+              type="radio"
+              value=""
+              name="default-radio"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            />
+            <label for="default-radio-2" className="block ml-5 mr-5">
+              Anglais
+            </label>
+          </div>
         </div>
         <div className="mb-4 flex justify-center">
           <input
