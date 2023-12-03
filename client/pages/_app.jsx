@@ -5,6 +5,7 @@ import { createPagesBrowserClient } from "@supabase/auth-helpers-nextjs";
 import { SessionContextProvider } from "@supabase/auth-helpers-react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import sha256 from "js-sha256";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -142,18 +143,20 @@ export default function App({ Component, pageProps }) {
               Home
             </Link>
           </li>
-          <li>
-            <Link
-              href="/about"
-              className={
-                isActive("/about")
-                  ? "bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg"
-                  : "bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300"
-              }
-            >
-              About Us
-            </Link>
-          </li>
+          {session ? (
+            <li>
+              <Link
+                href="/post"
+                className={
+                  isActive("/post")
+                    ? "bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg"
+                    : "bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300"
+                }
+              >
+                Post
+              </Link>
+            </li>
+          ) : null}
           <li>
             <Link
               href="/contacts"

@@ -1,50 +1,56 @@
-import { useEffect } from "react";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import React, { useEffect, useState } from "react";
+import { createClient } from "@supabase/supabase-js";
+import { useRouter } from "next/router";
 
-export default function commentaire() {
-  const supabaseClient = useSupabaseClient();
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+);
+
+export default function post() {
+  const [user, setUser] = useState(null);
+  const router = useRouter();
+  useEffect(() => {
+    async function getUserProfile() {
+      await supabase
+        .from("profiles")
+        .select("id, username, full_name")
+        .then((value) => {
+          if (value.data[0]) {
+            console.log(value.data[0]);
+            setUser(value.data[0]);
+          }
+        });
+    }
+    getUserProfile();
+  }, []);
   const onSubmit = async (event) => {
     event.preventDefault();
-    const { title, content, categorie, tags, message } =
-      event.target.elements;
-    if (tags.value === "" || message.value === "") {
-      alert("Veuillez au moins remplir votre tags et votre message.");
+    const { title, content, categorie, tags } = event.target.elements;
+    if (title.value === "" || content.value === "") {
+      alert("Veuillez au moins remplir votre titre et votre contenu.");
       return;
     }
 
-    await supabaseClient.from("commentaire").insert([
+    await supabase.from("post").insert([
       {
         title: title.value,
         content: content.value,
         categorie: categorie.value,
         tags: tags.value,
-        message: message.value,
+        id_user: user?.id,
       },
     ]);
-    alert("Votre message a bien été envoyé");
+    alert("Votre post a bien été envoyé");
   };
   return (
     <main className="flex">
-      <div className="w-1/2"> 
-
-        <h2 className="mt-10 max-w-md mx-auto"><p className="italic font-bold text-sky-500 dark:text-sky-400">
-          tu veux laisser un commentaire c'est par ici</p></h2> 
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <h2 className="mt-10 max-w-md mx-auto"><p className="text-red-500">
-            Attention, soyez indulgent dans vos propos.</p></h2>
- 
-
+      <div className="w-1/2">
+        <h2 className="mt-10 max-w-md mx-auto">
+          <p className="italic font-bold text-sky-500 dark:text-sky-400">
+            Tu veux laisser un post c'est par ici
+          </p>
+        </h2>
       </div>
       <form onSubmit={onSubmit} className="mt-10 max-w-md mx-auto w-1/2">
         <div className="mb-4">
@@ -56,7 +62,7 @@ export default function commentaire() {
             type="text"
             name="title"
             id="title"
-            placeholder="veillez donner le nom du film s'il vous plait"
+            placeholder="Veuillez donner le nom du film s'il vous plait"
           />
         </div>
         <div className="mb-4">
@@ -69,19 +75,19 @@ export default function commentaire() {
             type="text"
             name="content"
             id="content"
-            placeholder="vous pouvez ecrire votre commentaire"
-            ></textarea>
+            placeholder="Vous pouvez ecrire votre post"
+          ></textarea>
         </div>
         <div className="mb-4">
           <label htmlFor="categorie" className="block ml-20 mr-5">
-            Catégorie 
+            Catégorie
           </label>
           <input
             className="border py-2 px-4 w-full rounded-md text-black"
             type="text"
             name="categorie"
             id="categorie"
-            placeholder="de quelle catégorie est ce film?"
+            placeholder="Choisissez une catégorie"
           />
         </div>
         <div className="mb-4">
@@ -96,7 +102,7 @@ export default function commentaire() {
             placeholder="#tags"
           />
         </div>
-         
+
         <div className="mb-4 flex justify-center">
           <input
             type="submit"
