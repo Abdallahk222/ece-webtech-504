@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { createClient } from "@supabase/supabase-js";
+import { useState, useEffect } from "react";
+import Link from "next/link";
 import { useRouter } from "next/router";
+import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -24,93 +25,98 @@ export default function post() {
     }
     getUserProfile();
   }, []);
-  const onSubmit = async (event) => {
-    event.preventDefault();
-    const { title, content, categorie, tags } = event.target.elements;
-    if (title.value === "" || content.value === "") {
-      alert("Veuillez au moins remplir votre titre et votre contenu.");
-      return;
+  const [posts, setpost] = useState([]);
+  useEffect(() => {
+    async function fetchPost() {
+      const { data: posts, error } = await supabase.from("post").select("*");
+      if (error) console.log("error", error);
+      else setpost(posts);
     }
+    fetchPost();
+  }, []);
 
-    await supabase.from("post").insert([
-      {
-        title: title.value,
-        content: content.value,
-        categorie: categorie.value,
-        tags: tags.value,
-        id_user: user?.id,
-      },
-    ]);
-    alert("Votre post a bien été envoyé");
-  };
   return (
-    <main className="flex">
-      <div className="w-1/2">
-        <h2 className="mt-10 max-w-md mx-auto">
-          <p className="italic font-bold text-sky-500 dark:text-sky-400">
-            Tu veux laisser un post c'est par ici
-          </p>
-        </h2>
+    <>
+      {user ? (
+        <>
+          <br></br>
+          <br></br>
+          <div className="flex justify-center">
+            <button>
+              <Link
+                href="/addpost"
+                className={
+                  "bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg"
+                }
+              >
+                Add a post
+              </Link>
+            </button>
+          </div>
+        </>
+      ) : null}
+      <div class="flex justify-center text-center mt-10 relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-gray-500 darkmode:text-gray-400">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 darkmode:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" class="px-6 py-3">
+                Titre
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Catégorie
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Contenue
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Date de Creation
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Tags
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {posts.map((post) => (
+              <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                <th
+                  scope="row"
+                  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  {post.title}
+                </th>
+                <td class="px-6 py-4">{post.categorie}</td>
+                <td class="px-6 py-4">{post.content}</td>
+                <td class="px-6 py-4">{post.creation_date}</td>
+                <td class="px-6 py-4">{post.tags}</td>
+                <td class="px-6 py-4">
+                  <a
+                    href="#"
+                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                  >
+                    Open
+                  </a>
+                  {user?.id == post.id_user ? (
+                    <>
+                      {" "}
+                      |{" "}
+                      <a
+                        href="#"
+                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      >
+                        Edit
+                      </a>
+                    </>
+                  ) : null}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-      <form onSubmit={onSubmit} className="mt-10 max-w-md mx-auto w-1/2">
-        <div className="mb-4">
-          <label htmlFor="title" className="block ml-20 mr-5">
-            Titre
-          </label>
-          <input
-            className="border py-2 px-4 w-full rounded-md text-black"
-            type="text"
-            name="title"
-            id="title"
-            placeholder="Veuillez donner le nom du film s'il vous plait"
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="content" className="block ml-20 mr-5">
-            Contenu
-          </label>
-          <textarea
-            rows={5}
-            className="border py-2 px-4 w-full rounded-md text-black"
-            type="text"
-            name="content"
-            id="content"
-            placeholder="Vous pouvez ecrire votre post"
-          ></textarea>
-        </div>
-        <div className="mb-4">
-          <label htmlFor="categorie" className="block ml-20 mr-5">
-            Catégorie
-          </label>
-          <input
-            className="border py-2 px-4 w-full rounded-md text-black"
-            type="text"
-            name="categorie"
-            id="categorie"
-            placeholder="Choisissez une catégorie"
-          />
-        </div>
-        <div className="mb-4">
-          <label htmlFor="tags" className="block ml-20 mr-5">
-            Tags
-          </label>
-          <input
-            className="border py-2 px-4 w-full rounded-md text-black"
-            type="text"
-            name="tags"
-            id="tags"
-            placeholder="#tags"
-          />
-        </div>
-
-        <div className="mb-4 flex justify-center">
-          <input
-            type="submit"
-            value="Envoyer"
-            className="bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg cursor-pointer hover:bg-blue-700"
-          />
-        </div>
-      </form>
-    </main>
+    </>
   );
 }

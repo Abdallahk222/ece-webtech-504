@@ -142,20 +142,18 @@ export default function App({ Component, pageProps }) {
               Home
             </Link>
           </li>
-          {session ? (
-            <li>
-              <Link
-                href="/post"
-                className={
-                  isActive("/post")
-                    ? "bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg"
-                    : "bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300"
-                }
-              >
-                Post
-              </Link>
-            </li>
-          ) : null}
+          <li>
+            <Link
+              href="/post"
+              className={
+                isActive("/post")
+                  ? "bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg"
+                  : "bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300"
+              }
+            >
+              Post
+            </Link>
+          </li>
           <li>
             <Link
               href="/contacts"
@@ -166,30 +164,6 @@ export default function App({ Component, pageProps }) {
               }
             >
               Contact Us
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/articles"
-              className={
-                isActive("/articles")
-                  ? "bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg"
-                  : "bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300"
-              }
-            >
-              Articles
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/use-state"
-              className={
-                isActive("/use-state")
-                  ? "bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg"
-                  : "bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300"
-              }
-            >
-              Use state
             </Link>
           </li>
           <li>
