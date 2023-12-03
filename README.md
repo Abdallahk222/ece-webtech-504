@@ -1,5 +1,5 @@
 # ECE Webtech groupe 504
-##Delivrables
+## Delivrables
 - vercel url: https://ece-webtech-504.vercel.app/
 - supabase project url: https://supabase.com/dashboard/project/pexotckimhxyoekypkjc
 ## Contributors
