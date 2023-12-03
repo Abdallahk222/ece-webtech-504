@@ -5,7 +5,6 @@ import { createPagesBrowserClient } from "@supabase/auth-helpers-nextjs";
 import { SessionContextProvider } from "@supabase/auth-helpers-react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import sha256 from "js-sha256";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
