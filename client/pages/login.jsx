@@ -36,7 +36,7 @@ const Login = () => {
       </div>
     );
   } else {
-    router.push("/profile");
+    location.assign("/profile");
     return null;
   }
 };

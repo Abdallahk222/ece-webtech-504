@@ -14,7 +14,7 @@ const supabase = createClient(
 export default function App({ Component, pageProps }) {
   const router = useRouter();
   const [supabaseClient] = useState(() => createPagesBrowserClient());
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const isActive = (path) => router.pathname === path;
   const [session, setSession] = useState(null);
   const [userT, setUserT] = useState(null);

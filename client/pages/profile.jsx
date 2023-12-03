@@ -55,7 +55,7 @@ export default function Profile() {
       })
       .eq("id", user?.id)
       .then(() => {
-        router.push("/profile");
+        location.reload();
       });
   };
 
