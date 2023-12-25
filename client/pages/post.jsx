@@ -66,9 +66,6 @@ export default function post() {
                 Catégorie
               </th>
               <th scope="col" class="px-6 py-3">
-                Contenue
-              </th>
-              <th scope="col" class="px-6 py-3">
                 Date de Creation
               </th>
               <th scope="col" class="px-6 py-3">
@@ -89,7 +86,6 @@ export default function post() {
                   {post.title}
                 </th>
                 <td class="px-6 py-4">{post.categorie}</td>
-                <td class="px-6 py-4">{post.content}</td>
                 <td class="px-6 py-4">{post.creation_date}</td>
                 <td class="px-6 py-4">{post.tags}</td>
                 <td class="px-6 py-4">

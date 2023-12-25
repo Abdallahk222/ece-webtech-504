@@ -21,10 +21,12 @@
     "@supabase/supabase-js": "^2.38.4",
     "@tailwindcss/forms": "^0.5.6",
     "@tailwindcss/typography": "^0.5.10",
+    "draft-js": "^0.11.7",
     "js-sha256": "^0.10.1",
     "next": "^13.5.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-draft-wysiwyg": "^1.15.0",
     "tailwindcss-font-inter": "^3.0.1"
   },
   "devDependencies": {
