@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { createClient } from '@supabase/supabase-js';
-import SearchBarPost from '../components/SearchBarPost';
+import SearchBarPost from '../components/searchBarPost';
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
