@@ -9,11 +9,11 @@ const supabase = createClient(
 
 export default function PostComplet() {
   const router = useRouter();
-  const { postId } = router.query; 
-  const [postContent, setPostContent] = useState(""); 
+  const { postId } = router.query;
+  const [postContent, setPostContent] = useState("");
   const [postTitle, setPostTitle] = useState("");
-  const [comment, setComment] = useState(""); 
-  const [comments, setComments] = useState([]); 
+  const [comment, setComment] = useState("");
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
     async function fetchPostData() {
@@ -38,45 +38,35 @@ export default function PostComplet() {
         const { data: commentsData, error: commentsError } = await supabase
           .from("comments")
           .select("*")
-          .eq("post_id", postId);
+          .eq("id_post", postId);
 
         if (commentsError) {
           console.error("Error fetching comments:", commentsError);
         } else {
-          setComments(commentsData || []);
+          setComments(commentsData);
         }
       }
     }
 
     fetchPostData();
-  }, [postId]); 
+  }, [postId]);
 
-  const handleCommentSubmit = async (e) => {
-    e.preventDefault();
-    console.log("handleCommentSubmit function called");
-
-    const form = new FormData(e.target);
-    const commentInput = form.get("commentary");
-    const { commentary } = e.target.elements;
-
-    if (commentary && commentary.value.trim() !== "") {
-      const commentInput = commentary.value.trim();
-
-      try {
-        const { data: insertedComment, error } = await supabase
-          .from("comments")
-          .insert([{ commentary: commentInput }]);
-
-        if (error) {
-          console.error("Error adding comment:", error);
-        } else {
-          setComments([...comments, insertedComment[0]]);
-          setComment("");
-        }
-      } catch (error) {
-        console.error("Error adding comment:", error);
-      }
+  const handleCommentSubmit = async (event) => {
+    event.preventDefault();
+    const { email, commentary } = event.target.elements;
+    if (commentary.value === "" || email.value === "") {
+      alert("Veuillez remplir tous les champs.");
+      return;
     }
+
+    await supabase.from("comments").insert([
+      {
+        id_post: postId,
+        commentary: commentary.value,
+        email: email.value,
+      },
+    ]);
+    router.push(`/postcomplet?postId=${postId}`);
   };
 
   return (
@@ -87,9 +77,16 @@ export default function PostComplet() {
 
         <div className="mt-8 ml-4">
           <form onSubmit={handleCommentSubmit} className="mb-4">
+            <input
+              className="block w-full border border-gray-300 rounded-md p-2 text-black"
+              type="text"
+              name="email"
+              id="email"
+              placeholder="veillez renseigner votre email"
+            />
             <textarea
               name="commentary"
-              value={comment}
+              id="commentary"
               onChange={(e) => setComment(e.target.value)}
               placeholder="Ajouter un commentaire..."
               className="block w-full border border-gray-300 rounded-md p-2 text-black"
@@ -104,8 +101,23 @@ export default function PostComplet() {
 
           <div>
             <h3 className="text-lg font-bold">Commentaires</h3>
-            {}
-            {}
+            <table>
+              <thead>
+                <tr>
+                  {" "}
+                  <th>Utilisateur</th>
+                  <th>Commentaire</th>
+                </tr>
+              </thead>
+              <tbody>
+                {comments.map((com) => (
+                  <tr>
+                    <th>{com.email}</th>
+                    <th>{com.commentary}</th>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
