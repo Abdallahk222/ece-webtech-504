@@ -22,7 +22,6 @@ export default function App({ Component, pageProps }) {
     async function getUserData() {
       await supabase.auth.getUser().then((value) => {
         if (value.data?.user) {
-          console.log(value.data.user);
           setUserT(value.data.user);
         }
       });

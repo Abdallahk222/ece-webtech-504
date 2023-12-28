@@ -13,7 +13,6 @@ export default function Profile() {
     async function getUserData() {
       await supabase.auth.getUser().then((value) => {
         if (value.data?.user) {
-          console.log(value.data.user);
           setUserT(value.data.user);
         }
       });
@@ -30,7 +29,6 @@ export default function Profile() {
         .select("id, username, full_name")
         .then((value) => {
           if (value.data[0]) {
-            console.log(value.data[0]);
             setUser(value.data[0]);
           }
         });

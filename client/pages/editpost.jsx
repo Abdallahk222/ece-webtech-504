@@ -103,11 +103,6 @@ export default function EditPost() {
             <button type="submit" className="bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg">
               Sauvegarder les modifications
             </button>
-            <Link href="/post">
-              <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
-                Annuler
-              </a>
-            </Link>
           </div>
         </form>
       </div>

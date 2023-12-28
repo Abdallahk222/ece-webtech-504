@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
 import { useRouter } from "next/router";
-import dynamic from "next/dynamic";
-import { convertToRaw, EditorState } from "draft-js";
-const Editor = dynamic(
-  () => import("react-draft-wysiwyg").then((mod) => mod.Editor),
-  { ssr: false }
-);
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL,
@@ -15,12 +8,6 @@ const supabase = createClient(
 );
 
 export default function addpost() {
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
-  const [content, setContent] = useState("");
-  const onEditorStateChange = (editorState) => {
-    setEditorState(editorState);
-    setContent(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
-  };
   const [user, setUser] = useState(null);
   const router = useRouter();
   useEffect(() => {
@@ -30,7 +17,6 @@ export default function addpost() {
         .select("id, username, full_name")
         .then((value) => {
           if (value.data[0]) {
-            console.log(value.data[0]);
             setUser(value.data[0]);
           }
         });
@@ -39,8 +25,10 @@ export default function addpost() {
   }, []);
   const onSubmit = async (event) => {
     event.preventDefault();
-    const { title, categorie, tags } = event.target.elements;
-    if (title.value === "" || content === "") {
+    const { title, content, categorie, tags } = event.target.elements;
+    var currentdate = new Date();
+    var isoDate = currentdate.toISOString().split("T")[0];
+    if (title.value === "" || content.value === "") {
       alert("Veuillez au moins remplir votre titre et votre contenu.");
       return;
     }
@@ -48,9 +36,10 @@ export default function addpost() {
     await supabase.from("post").insert([
       {
         title: title.value,
-        content: content,
+        content: content.value,
         categorie: categorie.value,
         tags: tags.value,
+        creation_date: isoDate,
         id_user: user?.id,
       },
     ]);
@@ -80,14 +69,14 @@ export default function addpost() {
           <label htmlFor="content" className="block ml-20 mr-5">
             Contenu
           </label>
-          <Editor
-            editorState={editorState}
-            onEditorStateChange={onEditorStateChange}
-            wrapperClassName="border py-2 px-2 w-full rounded-md text-black"
-            editorClassName="border py-3 px-4 w-full text-black bg-white"
-            toolbarClassName="toolbar-class"
-          />
-          {content}
+          <textarea
+            rows={5}
+            className="border py-2 px-4 w-full rounded-md text-black"
+            type="text"
+            name="content"
+            id="content"
+            placeholder="Vous pouvez écrire votre post"
+          ></textarea>
         </div>
         <div className="mb-4">
           <label htmlFor="categorie" className="block ml-20 mr-5">
