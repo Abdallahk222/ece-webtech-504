@@ -72,49 +72,51 @@ export default function Post() {
       <div className="flex justify-center mt-10">
         <SearchBarPost onSearch={setSearchTerm} />
       </div>
-      <div className="flex justify-center text-center mt-20 relative overflow-x-auto shadow-md sm:rounded-lg w-full mx-auto">
-        <table className="w-full text-sm text-gray-500 dark:text-gray-400 table-white">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-white dark:text-gray-400">
-            <tr>
-              <th scope="col" className="px-6 py-3">Titre</th>
-              <th scope="col" className="px-6 py-3">Catégorie</th>
-              <th scope="col" className="px-6 py-3">Contenu</th>
-              <th scope="col" className="px-6 py-3">Date de Création</th>
-              <th scope="col" className="px-6 py-3">Tags</th>
-              <th scope="col" className="px-6 py-3">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {posts.map((post) => (
-              <tr key={post.id} className="border-b dark:border-gray-700">
-                <td className="px-6 py-4 font-medium text-gray-900 dark:text-white">{post.title}</td>
-                <td className="px-6 py-4">{post.categorie}</td>
-                <td className="px-6 py-4">{post.content}</td>
-                <td className="px-6 py-4">{post.creation_date}</td>
-                <td className="px-6 py-4">{post.tags}</td>
-                <td className="px-6 py-4">
-                  <Link href={`/postcomplet?postId=${post.id}`} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                    Ouvrir
-                  </Link>
-                  {user?.id === post.id_user && (
-                    <>
-                      <span>
-                        {' | '}
-                        <Link href={`/editpost?postId=${post.id}`} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                          Éditer
-                        </Link>
-                      </span>
-                      {' | '}
-                      <button onClick={() => handleDelete(post.id)} className="font-medium text-red-600 dark:text-red-500 hover:underline">
-                        Supprimer
-                      </button>
-                    </>
-                  )}
-                </td>
+      <div className="flex justify-center mt-20">
+        <div className="w-1/2 overflow-x-auto shadow-md sm:rounded-lg">
+          <table className="w-full text-sm text-gray-500 dark:text-gray-400 bg-white"> 
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-white dark:text-gray-400">
+              <tr>
+                <th scope="col" className="px-6 py-3">Titre</th>
+                <th scope="col" className="px-6 py-3">Catégorie</th>
+                <th scope="col" className="px-6 py-3">Contenu</th>
+                <th scope="col" className="px-6 py-3">Date de Création</th>
+                <th scope="col" className="px-6 py-3">Tags</th>
+                <th scope="col" className="px-6 py-3">Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {posts.map((post) => (
+                <tr key={post.id} className="border-b dark:border-gray-700">
+                  <td className="px-6 py-4 font-medium text-gray-900 dark:text-white">{post.title}</td>
+                  <td className="px-6 py-4">{post.categorie}</td>
+                  <td className="px-6 py-4">{post.content}</td>
+                  <td className="px-6 py-4">{post.creation_date}</td>
+                  <td className="px-6 py-4">{post.tags}</td>
+                  <td className="px-6 py-4">
+                    <Link href={`/postcomplet?postId=${post.id}`} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                      Ouvrir
+                    </Link>
+                    {user?.id === post.id_user && (
+                      <>
+                        <span>
+                          {' | '}
+                          <Link href={`/editpost?postId=${post.id}`} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                            Éditer
+                          </Link>
+                        </span>
+                        {' | '}
+                        <button onClick={() => handleDelete(post.id)} className="font-medium text-red-600 dark:text-red-500 hover:underline">
+                          Supprimer
+                        </button>
+                      </>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );
