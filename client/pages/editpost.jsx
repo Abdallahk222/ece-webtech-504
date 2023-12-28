@@ -56,38 +56,61 @@ export default function EditPost() {
   };
 
   return (
-    <div className="edit-post-container">
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="title">Titre</label>
-          <input
-            id="title"
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="categorie">Catégorie</label>
-          <input
-            id="categorie"
-            type="text"
-            value={categorie}
-            onChange={(e) => setCategorie(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="tags">Tags</label>
-          <input
-            id="tags"
-            type="text"
-            value={tags}
-            onChange={(e) => setTags(e.target.value)}
-          />
-        </div>
-        <button type="submit">Sauvegarder les modifications</button>
-        <Link href="/post"><a>Annuler</a></Link>
-      </form>
+    <div className="flex justify-center items-center h-screen"> {}
+      <div className="w-full max-w-md"> {}
+        <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+          <div className="mb-4">
+            <label htmlFor="title" className="block text-gray-700 text-sm font-bold mb-2">Titre</label>
+            <input
+              id="title"
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="content" className="block text-gray-700 text-sm font-bold mb-2">Contenu</label>
+            <input
+              id="content"
+              type="text"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="categorie" className="block text-gray-700 text-sm font-bold mb-2">Catégorie</label>
+            <input
+              id="categorie"
+              type="text"
+              value={categorie}
+              onChange={(e) => setCategorie(e.target.value)}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="tags" className="block text-gray-700 text-sm font-bold mb-2">Tags</label>
+            <input
+              id="tags"
+              type="text"
+              value={tags}
+              onChange={(e) => setTags(e.target.value)}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <div className="flex items-center justify-between">
+            <button type="submit" className="bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg">
+              Sauvegarder les modifications
+            </button>
+            <Link href="/post">
+              <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+                Annuler
+              </a>
+            </Link>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

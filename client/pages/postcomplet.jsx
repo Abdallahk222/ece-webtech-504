@@ -89,12 +89,11 @@ export default function PostComplet() {
               id="commentary"
               onChange={(e) => setComment(e.target.value)}
               placeholder="Ajouter un commentaire..."
-              className="block w-full border border-gray-300 rounded-md p-2 text-black"
-            ></textarea>
+              className="block w-full border border-gray-300 rounded-md p-2 text-black">
+              </textarea>
             <button
               type="submit"
-              className="bg-blue-500 text-white px-4 py-2 rounded-md mt-2"
-            >
+              className="bg-blue-500 text-white px-4 py-2 rounded-md mt-2">
               Commenter
             </button>
           </form>

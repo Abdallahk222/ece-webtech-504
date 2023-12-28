@@ -114,7 +114,7 @@ export default function Post() {
                           Éditer
                         </Link>
                       </span>
-                      <button onClick={() => handleDelete(post.id)} className="ml-4 text-red-600 hover:text-red-800">
+                      <button onClick={() => handleDelete(post.id)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                         Supprimer
                       </button>
                     </>
