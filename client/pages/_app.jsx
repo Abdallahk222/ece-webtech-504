@@ -167,14 +167,14 @@ export default function App({ Component, pageProps }) {
           </li>
           <li>
             <Link
-              href="/admin/contacts"
+              href="/about"
               className={
-                isActive("/admin/contacts")
+                isActive("/about")
                   ? "bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg"
                   : "bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300 active:to-blue-700 focus:ring-2 focus:ring-cyan-400 "
               }
             >
-              Admin (contacts)
+              About Us
             </Link>
           </li>
         </ul>

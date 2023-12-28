@@ -59,14 +59,18 @@ export default function PostComplet() {
       return;
     }
 
-    await supabase.from("comments").insert([
-      {
-        id_post: postId,
-        commentary: commentary.value,
-        email: email.value,
-      },
-    ]);
-    router.push(`/postcomplet?postId=${postId}`);
+    await supabase
+      .from("comments")
+      .insert([
+        {
+          id_post: postId,
+          commentary: commentary.value,
+          email: email.value,
+        },
+      ])
+      .then(() => {
+        location.reload();
+      });
   };
 
   // ... (importations et initialisations inchangées)
