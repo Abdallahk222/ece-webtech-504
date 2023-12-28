@@ -65,3 +65,7 @@ body {
   color: black; 
   background-color: white; 
 }
+
+.dark .table-white {
+  background-color: white; 
+}
