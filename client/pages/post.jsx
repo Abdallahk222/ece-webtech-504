@@ -46,7 +46,7 @@ export default function post() {
       {user && (
         <>
           <br />
-          <div className="flex justify-center">
+          <div className="flex justify-center mt-10">
             <Link href="/addpost" className="bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg">
               Ajouter un post
             </Link>
@@ -54,7 +54,7 @@ export default function post() {
           <br />
         </>
       )}
-    <div className="flex justify-center mt-20">
+    <div className="flex justify-center mt-10">
       <SearchBarPost onSearch={setSearchTerm} />
     </div>
      <div className="flex justify-center text-center mt-20 relative overflow-x-auto shadow-md sm:rounded-lg w-1/2 mx-auto">
