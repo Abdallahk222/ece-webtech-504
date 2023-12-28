@@ -118,7 +118,7 @@ export default function addpost() {
           <input
             type="submit"
             value="Envoyer"
-            className="bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg cursor-pointer hover:bg-blue-700"
+            className="inline-flex justify-center rounded-lg text-sm font-semibold py-3 px-4 bg-gradient-to-r from-cyan-400 to-blue-600 text-white hover:from-cyan-700 hover:to-cyan-900 active:from-cyan-900 active:to-blue-700 focus:ring-2 focus:ring-cyan-400"
           />
         </div>
       </form>

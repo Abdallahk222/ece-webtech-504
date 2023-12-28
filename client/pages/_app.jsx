@@ -136,7 +136,7 @@ export default function App({ Component, pageProps }) {
               className={
                 isActive("/")
                   ? "bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg"
-                  : "bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300"
+                  : "bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300 active:to-blue-700 focus:ring-2 focus:ring-cyan-400 "
               }
             >
               Home
@@ -148,7 +148,7 @@ export default function App({ Component, pageProps }) {
               className={
                 isActive("/post")
                   ? "bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg"
-                  : "bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300"
+                  : "bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300 active:to-blue-700 focus:ring-2 focus:ring-cyan-400 "
               }
             >
               Post
@@ -160,7 +160,7 @@ export default function App({ Component, pageProps }) {
               className={
                 isActive("/contacts")
                   ? "bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg"
-                  : "bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300"
+                  : "bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300 active:to-blue-700 focus:ring-2 focus:ring-cyan-400 "
               }
             >
               Contact Us
@@ -172,7 +172,7 @@ export default function App({ Component, pageProps }) {
               className={
                 isActive("/admin/contacts")
                   ? "bg-gradient-to-r from-cyan-400 to-blue-600 text-white py-2 px-4 rounded-lg shadow-lg"
-                  : "bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300"
+                  : "bg-gray-200 text-black py-2 px-4 rounded-lg hover:bg-gray-300 active:to-blue-700 focus:ring-2 focus:ring-cyan-400 "
               }
             >
               Admin (contacts)
