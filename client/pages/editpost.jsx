@@ -12,14 +12,14 @@ export default function EditPost() {
   const router = useRouter();
   const { postId } = router.query;
 
-  const [post, setPost] = useState(null);
   const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
   const [categorie, setCategorie] = useState('');
   const [tags, setTags] = useState('');
 
   useEffect(() => {
     if (postId) {
-      const fetchPost = async () => {
+      async function fetchPost() {
         const { data, error } = await supabase
           .from('post')
           .select('*')
@@ -27,14 +27,14 @@ export default function EditPost() {
           .single();
 
         if (error) {
-          console.error('Erreur lors de la récupération du post', error);
+          console.error('Error fetching post', error);
         } else {
-          setPost(data);
           setTitle(data.title);
+          setContent(data.content); // Assuming content is a JSON object or a string
           setCategorie(data.categorie);
           setTags(data.tags);
         }
-      };
+      }
 
       fetchPost();
     }
@@ -42,13 +42,14 @@ export default function EditPost() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('post')
-      .update({ title, categorie, tags })
+      .update({ title, content, categorie, tags })
       .eq('id', postId);
 
     if (error) {
-      console.error('Erreur lors de la mise à jour du post', error);
+      console.error('Error updating post', error);
+      alert('Error updating post: ' + error.message);
     } else {
       router.push('/post');
     }
