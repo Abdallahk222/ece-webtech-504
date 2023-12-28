@@ -8,7 +8,7 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 );
 
-export default function post() {
+export default function Post() {
   const [user, setUser] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [posts, setPosts] = useState([]);
@@ -17,29 +17,44 @@ export default function post() {
     supabase
       .from('profiles')
       .select('id, username, full_name')
-      .then((value) => {
-        if (value.data[0]) {
-          setUser(value.data[0]);
+      .then(({ data }) => {
+        if (data?.length) {
+          setUser(data[0]);
         }
       });
   }, []);
 
   useEffect(() => {
-    async function fetchPost() {
+    async function fetchPosts() {
       const { data: posts, error } = await supabase.from('post').select('*');
       if (error) {
         console.log('error', error);
       } else {
         const filteredPosts = searchTerm
-          ? posts.filter(post =>
+          ? posts.filter((post) =>
               post.title.toLowerCase().includes(searchTerm.toLowerCase())
             )
           : posts;
         setPosts(filteredPosts);
       }
     }
-    fetchPost();
+    fetchPosts();
   }, [searchTerm]);
+
+  const handleDelete = async (postId) => {
+    const confirmDelete = confirm('Êtes-vous sûr de vouloir supprimer ce post ?');
+    if (confirmDelete) {
+      const { error } = await supabase
+        .from('post')
+        .delete()
+        .match({ id: postId });
+      if (error) {
+        console.error('Erreur lors de la suppression du post', error);
+      } else {
+        setPosts(posts.filter((post) => post.id !== postId));
+      }
+    }
+  };
 
   return (
     <>
@@ -54,12 +69,12 @@ export default function post() {
           <br />
         </>
       )}
-    <div className="flex justify-center mt-10">
-      <SearchBarPost onSearch={setSearchTerm} />
-    </div>
-     <div className="flex justify-center text-center mt-20 relative overflow-x-auto shadow-md sm:rounded-lg w-1/2 mx-auto">
+      <div className="flex justify-center mt-10">
+        <SearchBarPost onSearch={setSearchTerm} />
+      </div>
+      <div className="flex justify-center text-center mt-20 relative overflow-x-auto shadow-md sm:rounded-lg w-1/2 mx-auto">
         <table className="w-full text-sm text-gray-500 dark:text-gray-400 table-white">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-white dark:text-gray-400">          
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-white dark:text-gray-400">
             <tr>
               <th scope="col" className="px-6 py-3">
                 Titre
@@ -92,12 +107,17 @@ export default function post() {
                     Ouvrir
                   </Link>
                   {user?.id === post.id_user && (
-                    <span>
-                      {' | '}
-                      <Link href={`/editpost?postId=${post.id}`} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                        Éditer
-                      </Link>
-                    </span>
+                    <>
+                      <span>
+                        {' | '}
+                        <Link href={`/editpost?postId=${post.id}`} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                          Éditer
+                        </Link>
+                      </span>
+                      <button onClick={() => handleDelete(post.id)} className="ml-4 text-red-600 hover:text-red-800">
+                        Supprimer
+                      </button>
+                    </>
                   )}
                 </td>
               </tr>
