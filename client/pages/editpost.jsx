@@ -30,7 +30,7 @@ export default function EditPost() {
           console.error('Error fetching post', error);
         } else {
           setTitle(data.title);
-          setContent(data.content); // Assuming content is a JSON object or a string
+          setContent(data.content); 
           setCategorie(data.categorie);
           setTags(data.tags);
         }
