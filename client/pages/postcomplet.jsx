@@ -69,6 +69,8 @@ export default function PostComplet() {
     router.push(`/postcomplet?postId=${postId}`);
   };
 
+  // ... (importations et initialisations inchangées)
+
   return (
     <div className="container mx-auto px-4">
       <div className="max-w-3xl mx-auto mt-8">
@@ -78,7 +80,7 @@ export default function PostComplet() {
         <div className="mt-8 ml-4">
           <form onSubmit={handleCommentSubmit} className="mb-4">
             <input
-              className="block w-full border border-gray-300 rounded-md p-2 text-black"
+              className="block w-full border border-gray-300 rounded-md p-2 text-black mb-4"
               type="text"
               name="email"
               id="email"
@@ -89,7 +91,7 @@ export default function PostComplet() {
               id="commentary"
               onChange={(e) => setComment(e.target.value)}
               placeholder="Ajouter un commentaire..."
-              className="block w-full border border-gray-300 rounded-md p-2 text-black"
+              className="block w-full border border-gray-300 rounded-md p-2 text-black mb-4"
             ></textarea>
             <button
               type="submit"
@@ -101,23 +103,20 @@ export default function PostComplet() {
 
           <div>
             <h3 className="text-lg font-bold">Commentaires</h3>
-            <table>
-              <thead>
-                <tr>
-                  {" "}
-                  <th>Utilisateur</th>
-                  <th>Commentaire</th>
-                </tr>
-              </thead>
-              <tbody>
-                {comments.map((com) => (
-                  <tr>
-                    <th>{com.email}</th>
-                    <th>{com.commentary}</th>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            {comments.map((com) => (
+              <div
+                style={{
+                  border: "1px solid cyan",
+                  marginBottom: "16px",
+                  padding: "8px",
+                }}
+              >
+                <p style={{ marginBottom: "8px", fontWeight: "bold" }}>
+                  {com.email}
+                </p>
+                <p>{com.commentary}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
