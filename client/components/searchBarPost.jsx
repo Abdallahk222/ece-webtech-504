@@ -11,10 +11,10 @@ function SearchBarPost({ onSearch }) {
   return (
     <input
       type="text"
-      placeholder="Rechercher par titre..."
+      placeholder="Rechercher des commentaires par titre"
       value={searchTerm}
       onChange={handleSearch}
-      className="p-2 border rounded search-bar-post" 
+      className="p-2 border rounded search-bar-post w-1/5" 
     />
   );
 }
