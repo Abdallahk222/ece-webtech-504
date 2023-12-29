@@ -18,6 +18,25 @@ const HomePage = () => {
 
   return (
     <div>
+      <p style={{ marginTop: "30px" }}>
+        <strong style={{ marginLeft: "300px" }}>
+          What film ? envie de regarder un film ? tu te trouves au bon endroit!
+        </strong>
+      </p>
+      <p>
+        <strong style={{ marginLeft: "300px" }}>
+          {" "}
+          Après ton visionnage n'hésite surtout pas à faire une publication et à
+          intéragir avec les autres en commentaires.
+        </strong>
+      </p>
+      <strong style={{ marginLeft: "300px" }}>
+        {" "}
+        Tu peux aussi t'amuser à regarder en détail la beauté de notre site^^.
+      </strong>
+      <p>
+        <strong style={{ marginLeft: "300px" }}> bon visionnage!</strong>
+      </p>
       <SearchBar onSearch={searchMovies} />
       <div className="movies-container">
         {movies.map((movie) => (

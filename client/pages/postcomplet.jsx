@@ -73,8 +73,6 @@ export default function PostComplet() {
       });
   };
 
-  // ... (importations et initialisations inchangées)
-
   return (
     <div className="container mx-auto px-4">
       <div className="max-w-3xl mx-auto mt-8">
