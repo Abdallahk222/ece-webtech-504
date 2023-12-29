@@ -11,13 +11,17 @@ Ceci est notre projet de site web, intitulé WhatFilm dont la thématique centra
 Une fois le repository cloné, lancer l’application avec : 
 
 ```
+npm install
+```
+Puis,
+```
 npm start
 ```
 
 ## Livrables
 
 - Vercel URL: https://ece-webtech-504.vercel.app/
-- supabase project url: https://supabase.com/dashboard/project/pexotckimhxyoekypkjc
+- Supabase Project URL: https://supabase.com/dashboard/project/pexotckimhxyoekypkjc
 
 ## Auteurs
 
