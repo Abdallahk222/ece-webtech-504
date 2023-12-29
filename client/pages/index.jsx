@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SearchBar from "../components/searchBar";
+import SearchBar from "../components/SearchBar";
 import Movie from "../components/movie";
 
 const HomePage = () => {
@@ -17,28 +17,22 @@ const HomePage = () => {
   };
 
   return (
-    <div>
-      <p style={{ marginTop: "30px" }}>
-        <strong style={{ marginLeft: "300px" }}>
-          What film ? envie de regarder un film ? tu te trouves au bon endroit!
-        </strong>
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-4xl font-bold text-center mb-8">
+        Bienvenue sur notre plateforme de films
+      </h1>
+      <p className="text-lg text-center mb-4">
+        Tu es à la recherche d'un film ? Tu es au bon endroit !
       </p>
-      <p>
-        <strong style={{ marginLeft: "300px" }}>
-          {" "}
-          Après ton visionnage n'hésite surtout pas à faire une publication et à
-          intéragir avec les autres en commentaires.
-        </strong>
+      <p className="text-lg text-center mb-8">
+        Après ton visionnage, n'hésite pas à partager ton expérience et à
+        interagir avec d'autres passionnés du cinéma.
       </p>
-      <strong style={{ marginLeft: "300px" }}>
-        {" "}
-        Tu peux aussi t'amuser à regarder en détail la beauté de notre site^^.
-      </strong>
-      <p>
-        <strong style={{ marginLeft: "300px" }}> bon visionnage!</strong>
+      <p className="text-lg text-center mb-8">
+        Amuse-toi à explorer les films disponibles sur notre site !
       </p>
       <SearchBar onSearch={searchMovies} />
-      <div className="movies-container">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {movies.map((movie) => (
           <Movie key={movie.id} movie={movie} />
         ))}
