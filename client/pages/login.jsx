@@ -31,7 +31,7 @@ const Login = () => {
           supabaseClient={supabase}
           appearance={{ theme: ThemeSupa }}
           theme="dark"
-          providers={["google", "github"]}
+          providers={["github"]}
         />
       </div>
     );
